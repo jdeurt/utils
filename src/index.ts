@@ -6,6 +6,7 @@ export type { ObjectKey } from "./types/object-key";
 export type { PathOf, ResolvePath } from "./types/object-path";
 export type { PartialIntersection } from "./types/partial-intersection";
 export type { PropertyOf } from "./types/property-of";
+export type { Last } from "./types/last";
 
 /* Functions */
 export { chain } from "./util/chain";
