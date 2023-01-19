@@ -14,3 +14,5 @@ export { pipe } from "./util/pipe";
 export { repeat } from "./util/repeat";
 export { pick } from "./util/pick";
 export { intersection } from "./util/intersection";
+export { makeCallable } from "./util/make-callable";
+export { isInRange } from "./util/is-in-range";
