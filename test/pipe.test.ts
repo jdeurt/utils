@@ -1,7 +1,7 @@
 import { pipe } from "../src";
 
 describe("Pipe", () => {
-    it("Should pipe functions", () => {
+    it("Should pipe", () => {
         const f = pipe(
             (x: number) => x * 10,
             (x) => x * 2,
