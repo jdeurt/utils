@@ -2,27 +2,37 @@ import type { PathOf, ResolvePath } from "../types/object-path";
 import type { ElementOf } from "../types/element-of";
 import { pick } from "./pick";
 
-// TODO: fix typings to not include undefined in the return type when not necessary
-// probably check out type defs for `ResolvePath`
-export function pluck<T extends unknown[], K extends string>(
+type PluckedValue<A, K extends string, O extends boolean> = O extends true
+    ? A extends readonly [infer E, ...infer Rest]
+        ? ResolvePath<E, K> | PluckedValue<Rest, K, O>
+        : PluckedValue<A, K, false>
+    : A extends (infer E)[]
+    ? ResolvePath<E, K>
+    : never;
+
+export function pluck<
+    T extends unknown[] | readonly unknown[],
+    K extends string,
+    O extends boolean
+>(
     arr: T,
     propertyPath: PathOf<ElementOf<T>, K>,
-    omitMissing = false
-): (ResolvePath<ElementOf<T>, K> | undefined)[] {
+    omitMissing?: O
+): PluckedValue<T, K, O>[] {
     const NOTHING = Symbol("nothing");
 
-    const result: (ResolvePath<ElementOf<T>, K> | undefined)[] = [];
+    const result: PluckedValue<T, K, O>[] = [];
 
     for (const elem of arr) {
         const plucked = pick(elem as ElementOf<T>, propertyPath, NOTHING);
 
         if (plucked === NOTHING) {
-            !omitMissing && result.push(undefined);
+            !omitMissing && result.push(undefined as PluckedValue<T, K, O>);
         } else {
             result.push(
-                typeof plucked === "function"
-                    ? (plucked.bind(elem) as ResolvePath<ElementOf<T>, K>)
-                    : plucked
+                (typeof plucked === "function"
+                    ? plucked.bind(elem)
+                    : plucked) as PluckedValue<T, K, O>
             );
         }
     }
