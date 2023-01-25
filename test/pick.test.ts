@@ -1,6 +1,6 @@
 import { pick } from "../src";
 
-describe("Path", () => {
+describe("Pick", () => {
     let someObject = {
         a: {
             b: {

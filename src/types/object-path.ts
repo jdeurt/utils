@@ -38,8 +38,8 @@ export type PathOf<
     : CandidateStringKeys<T, P>;
 
 type Descend<T, K extends string> = T extends { [P in K]?: infer X }
-    ? X | (T extends { [P in K]: never } ? never : undefined)
-    : T[K & keyof T] | undefined;
+    ? X
+    : T[K & keyof T];
 
 export type ResolvePath<T, K extends string> = K extends `${infer U}.${infer V}`
     ? T extends T

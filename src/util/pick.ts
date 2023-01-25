@@ -10,11 +10,16 @@ export function pick<O, K extends string>(
     path: PathOf<O, K>,
     softFail: true
 ): ResolvePath<O, K> | undefined;
-export function pick<O, K extends string>(
+export function pick<O, K extends string, S extends symbol>(
     obj: O,
     path: PathOf<O, K>,
-    softFail?: boolean
-): ResolvePath<O, K> | undefined {
+    softFail: S
+): ResolvePath<O, K> | S;
+export function pick<O, K extends string, S extends symbol>(
+    obj: O,
+    path: PathOf<O, K>,
+    softFail?: boolean | S
+): ResolvePath<O, K> | undefined | S {
     const parts = path.split(".");
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,7 +30,7 @@ export function pick<O, K extends string>(
         currProp = currProp[part];
 
         if (softFail && currProp === undefined) {
-            return undefined;
+            return softFail === true ? undefined : softFail;
         }
     }
 
