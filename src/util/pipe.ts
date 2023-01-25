@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-// Created by https://github.com/daniellwdb
+// Created with the help of https://github.com/daniellwdb
 
 type Fn<A = any, R = any> = (x: A) => R;
 
