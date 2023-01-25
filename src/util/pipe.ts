@@ -23,6 +23,9 @@ type PipeFactory = <A, T extends Fn[]>(
     ...ops: PipeArgs<A, T>
 ) => PipeResult<A, T>;
 
+/**
+ * Creates a function which pipes a value `x` through the functions passed to this one.
+ */
 export const pipe: PipeFactory = ((...fns: any[]) =>
     (x: unknown) =>
         fns.reduce((v, f) => f(v), x)) as any;

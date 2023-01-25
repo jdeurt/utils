@@ -1,6 +1,6 @@
 import { pluck } from "../src";
 
-describe("Pluck", () => {
+describe("pluck", () => {
     it("Should correctly pluck elements of an array", () => {
         const values = pluck([{ a: 1 }, { a: 2 }], "a");
 
@@ -9,7 +9,11 @@ describe("Pluck", () => {
 
     it("Should omit values if the behavior is specified", () => {
         const values = pluck([{ a: 1 }, { a: 2 }, { b: 3 }], "a");
-        const valuesWithOmit = pluck([{ a: 1 }, { a: 2 }, { b: 3 }], "a", true);
+        const valuesWithOmit = pluck(
+            [{ a: 1 }, { a: 2 }, { b: 3 }] as const,
+            "a",
+            true
+        );
         const valuesWithOmitTricky = pluck(
             [{ a: undefined }, { a: undefined }, { b: 3 }],
             "a",

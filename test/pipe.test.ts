@@ -1,6 +1,6 @@
 import { pipe } from "../src";
 
-describe("Pipe", () => {
+describe("pipe", () => {
     it("Should pipe", () => {
         const f = pipe(
             (x: number) => x * 10,

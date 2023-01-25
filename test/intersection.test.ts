@@ -1,6 +1,6 @@
 import { intersection } from "../src";
 
-describe("Intersection", () => {
+describe("intersection", () => {
     it("Should output an array of elements that are present in every sub-array", () => {
         const arr = [
             ["a", "b", "c"],

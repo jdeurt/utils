@@ -4,7 +4,16 @@ type RangeString =
     | `${LeftBracket}${number},${number}${RightBracket}`
     | `${LeftBracket}${number}, ${number}${RightBracket}`;
 
-export const isInRange = (x: number, [...range]: RangeString) => {
+/**
+ * Checks if `x` is in a range.
+ * @param x The number to check.
+ * @param range The range to check against.
+ * @example
+ * // Returns true
+ * isInRange(3, "[3, 5)");
+ * @returns True if `x` is in the passed `range`, false otherwise.
+ */
+export function isInRange(x: number, [...range]: RangeString): boolean {
     const commaIndex = range.indexOf(",");
     const spaceIndex = range.indexOf(" ");
 
@@ -21,4 +30,4 @@ export const isInRange = (x: number, [...range]: RangeString) => {
         (lBracket === "(" ? x > lNumber : x >= lNumber) &&
         (rBracket === ")" ? x < rNumber : x <= rNumber)
     );
-};
+}

@@ -1,6 +1,6 @@
 import { repeat } from "../src";
 
-describe("Repeat", () => {
+describe("repeat", () => {
     it("Should output an array of returned values for a function", () => {
         const result = repeat((i) => i * 2, 5);
 

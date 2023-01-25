@@ -23,6 +23,13 @@ type CandidateStringKeys<T, P extends string> = T extends T
                     : unknown))
     : never;
 
+type Descend<T, K extends string> = T extends { [P in K]?: infer X }
+    ? X
+    : T[K & keyof T];
+
+/**
+ * Constructs a string literal union type consisting of all property paths in `T`.
+ */
 export type PathOf<
     T,
     K extends string,
@@ -36,10 +43,6 @@ export type PathOf<
     : ("" extends K ? unknown : K) extends StringKeys<T>
     ? `${P}${K}`
     : CandidateStringKeys<T, P>;
-
-type Descend<T, K extends string> = T extends { [P in K]?: infer X }
-    ? X
-    : T[K & keyof T];
 
 export type ResolvePath<T, K extends string> = K extends `${infer U}.${infer V}`
     ? T extends T
