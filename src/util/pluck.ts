@@ -40,14 +40,14 @@ export function pluck<
     for (const elem of arr) {
         const plucked = pick(elem as ElementOf<T>, keyPath, NOTHING);
 
-        if (plucked === NOTHING) {
-            !omitMissing && result.push(undefined as PluckedValue<T, K, O>);
-        } else {
-            result.push(
-                (typeof plucked === "function"
-                    ? plucked.bind(elem)
-                    : plucked) as PluckedValue<T, K, O>
-            );
+        if (plucked === NOTHING && !omitMissing) {
+            result.push(undefined as PluckedValue<T, K, O>);
+        } else if (plucked !== NOTHING) {
+            if (typeof plucked === "function") {
+                result.push(plucked.bind(elem) as PluckedValue<T, K, O>);
+            } else {
+                result.push(plucked as PluckedValue<T, K, O>);
+            }
         }
     }
 
