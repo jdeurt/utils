@@ -19,6 +19,8 @@ export type { PropertyOf } from "./types/property-of";
 export type { Tail } from "./types/tail";
 
 /* Functions */
+export * from "./util/iterable";
+export * from "./util/type-narrowing";
 export { _assert } from "./util/assert";
 export { using } from "./util/using";
 export { intersection } from "./util/intersection";
@@ -29,8 +31,3 @@ export { pick } from "./util/pick";
 export { pipe } from "./util/pipe";
 export { pluck } from "./util/pluck";
 export { repeat } from "./util/repeat";
-
-/* Misc */
-export * as composable from "./composable";
-export * as iterable from "./iterable";
-export * as typeNarrowing from "./type-narrowing";
