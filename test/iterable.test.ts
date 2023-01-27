@@ -1,5 +1,4 @@
-import { pipe, using } from "../src";
-import { withAsyncIterable, withIterable } from "../src/iterable";
+import { withAsyncIterable, withIterable } from "../src/util/iterable";
 
 describe("withIterable", () => {
     const map = new Map([
