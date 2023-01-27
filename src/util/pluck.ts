@@ -1,5 +1,6 @@
 import type { PathOf, ResolvePath } from "../types/object-path";
 import type { ElementOf } from "../types/element-of";
+import { NOTHING } from "./constants/nothing";
 import { pick } from "./pick";
 
 // TODO: Clean this up lol
@@ -33,8 +34,6 @@ export function pluck<
     keyPath: PathOf<ElementOf<T>, K>,
     omitMissing?: O
 ): PluckedValue<T, K, O>[] {
-    const NOTHING = Symbol("nothing");
-
     const result: PluckedValue<T, K, O>[] = [];
 
     for (const elem of arr) {
